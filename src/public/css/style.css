@@ -1,0 +1,75 @@
+/* Reset e centralização */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+}
+
+/* Seção 'sobre' compacta e centralizada internamente */
+#sobre {
+    width: 415px;
+    height: 350px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centraliza o conteúdo verticalmente */
+    align-items: center;     /* centraliza horizontalmente */
+    overflow: hidden;
+    gap: 6px; /* espaço entre elementos */
+}
+
+/* Títulos com letras maiores e alinhamento central */
+#sobre h2 {
+    font-size: 18px;
+    color: #333;
+    margin: 4px 0;
+    line-height: 1.3;
+}
+
+#sobre h3 {
+    font-size: 16px;
+    color: #555;
+    margin: 4px 0;
+    line-height: 1.3;
+}
+
+#sobre h4 {
+    font-size: 14px;
+    color: #777;
+    margin: 4px 0;
+    line-height: 1.3;
+}
+
+/* Parágrafo mais legível */
+#sobre p {
+    font-size: 14px;
+    color: #666;
+    margin: 6px 0;
+    line-height: 1.4;
+}
+
+/* Botão visível e alinhado */
+#sobre button {
+    padding: 8px 14px;
+    font-size: 14px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+}
+
+#sobre button:hover {
+    background-color: #0056b3;
+}

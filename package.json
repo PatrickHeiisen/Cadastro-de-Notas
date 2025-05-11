@@ -1,0 +1,29 @@
+{
+  "name": "cadastro",
+  "version": "1.0.0",
+  "description": "Sistema de cadastro de clientes",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PatrickHeiisen/Cadastro_Cliente.git"
+  },
+  "author": "Patrick G",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PatrickHeiisen/Cadastro_Cliente.git"
+  },
+  "homepage": "https://github.com/PatrickHeiisen/Cadastro_Cliente#readme",
+  "devDependencies": {
+    "electron": "^35.2.0"
+  },
+  "dependencies": {
+    "i": "^0.3.7",
+    "jspdf": "^3.0.1",
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.12.1"
+  }
+}
