@@ -1,15 +1,80 @@
-// Ação ao clicar no botão Limpar =============================================
-document.querySelector('button[type="reset"]').addEventListener('click', function () {
-    const inputs = document.querySelectorAll('input')
-    inputs.forEach(input => {
-        input.value = ''
-        input.classList.remove('is-invalid')
-    })
-})
+// Validação Cnpj =============================================================
+function validarCNPJ() {
+    let cnpjInput = document.getElementById('inputCnpj');
+    let cnpj = cnpjInput.value.replace(/\D/g, ''); // Remove tudo que não for número
+
+    // Resetando o estilo
+    cnpjInput.style.border = "";
+
+    // Verifica se tem 14 dígitos e se não é uma sequência repetida
+    if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) {
+        cnpjInput.style.border = "2px solid red";
+        return;
+    }
+
+    let tamanho = cnpj.length - 2;
+    let numeros = cnpj.substring(0, tamanho);
+    let digitos = cnpj.substring(tamanho);
+    let soma = 0;
+    let pos = tamanho - 7;
+
+    // Valida o primeiro dígito verificador
+    for (let i = tamanho; i >= 1; i--) {
+        soma += parseInt(numeros.charAt(tamanho - i)) * pos--;
+        if (pos < 2) pos = 9;
+    }
+    let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+    if (resultado !== parseInt(digitos.charAt(0))) {
+        cnpjInput.style.border = "2px solid red";
+        return;
+    }
+
+    // Valida o segundo dígito verificador
+    tamanho = tamanho + 1;
+    numeros = cnpj.substring(0, tamanho);
+    soma = 0;
+    pos = tamanho - 7;
+    for (let i = tamanho; i >= 1; i--) {
+        soma += parseInt(numeros.charAt(tamanho - i)) * pos--;
+        if (pos < 2) pos = 9;
+    }
+    resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+    if (resultado !== parseInt(digitos.charAt(1))) {
+        cnpjInput.style.border = "2px solid red";
+        return;
+    }
+
+    // CNPJ válido
+    cnpjInput.style.border = "";
+}
 //=============================================================================
 
 // Limpar Formulario ==========================================================
 
+//=============================================================================
+
+// Data =======================================================================
+function obterData() {
+    const data = new Date()
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    }
+    return data.toLocaleDateString('pt-BR', options)
+}
+
+document.getElementById('dataAtual').innerHTML = obterData()
+
+api.dbStatus((event, message) => {
+    console.log(message)
+    if (message === "conectado") {
+        document.getElementById('iconeDB').src = "../public/img/dbon.png"
+    } else {
+        document.getElementById('iconeDB').src = "../public/img/dboff.png"
+    }
+})
 //=============================================================================
 
 // Processo de cadastro do cliente ============================================

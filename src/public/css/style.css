@@ -73,3 +73,22 @@ body, html {
 #sobre button:hover {
     background-color: #0056b3;
 }
+
+/*Cnpj*/
+.is-invalid {
+    border-color: red;
+}
+
+/** Rodapé **/
+footer {
+    background-color: #174feb;
+    display: flex;
+    justify-content: space-between;
+    display: fixed;
+    padding: 5px;
+    height: 30px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+}

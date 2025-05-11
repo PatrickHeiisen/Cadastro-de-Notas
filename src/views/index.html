@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">CNPJ</label>
-                        <input type="text" id="inputCnpj" class="form-control" required>
+                        <input type="text" id="inputCnpj" class="form-control" onblur="validarCNPJ()" required>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -100,10 +100,13 @@
                 <button type="button" class="btn btn-primary text-black" id="btnUpdate">EDITAR</button>
                 <button type="button" class="btn btn-danger text-black" id="btnDelete">EXCLUIR</button>
             </div>
-            <div id="mensagemSucesso" class="text-success text-center mt-3" style="display: none;">Cadastro realizado
-                com sucesso!</div>
         </form>
     </div>
+
+    <footer>
+        <p id="dataAtual"></p>
+        <img src="../public/img/dboff.png" alt="ícone banco de dados" id="iconeDB">
+    </footer>
 
     <script src="../public/js/bootstrap.min.js"></script>
     <script src="renderer.js"></script>
