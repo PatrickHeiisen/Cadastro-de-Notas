@@ -179,8 +179,87 @@ ipcMain.on('create-nota', async (event, newNota) => {
 
         await newNotas.save()
 
+        dialog.showMessageBox({
+            type: 'info',
+            title: "Aviso",
+            message: "Nota adicionado com sucesso.",
+            buttons: ['OK']
+        }).then((result) => {
+            if (result.response === 0) {
+                event.reply('reset-form')
+            }
+        })
+
+    } catch (error) {
+        // Tratamento da excessão "CNPJ duplicado"
+        if (error.code === 11000) {
+            dialog.showMessageBox({
+                type: 'error',
+                title: "Atenção!!!",
+                message: "CNPJ já cadastrado.\nVerifique o número digitado",
+                buttons: ['OK']
+            }).then((result) => {
+                // Se o botão OK for pressionado
+                if (result.response === 0) {
+                    // Encontrar o campo de CPF
+                    event.reply('reset-cnpj')
+                }
+            })
+        } else {
+            console.log(error);
+        }
+    }
+})
+//==================================================================================
+
+//= CRUD READ ======================================================================
+// Validação da busca
+ipcMain.on('validate-search', () => {
+    dialog.showMessageBox({
+        type: 'warning',
+        title: 'atenção',
+        message: 'Preencher o campo de busca',
+        buttons: ['OK']
+    })
+})
+
+ipcMain.on('search-nota', async (event, notaCad) => {
+    // Teste do recebimento do nome do cliente (Passo 2)
+    console.log(notaCad)
+    try {
+        // Passos 3 e 4 (Busca dos dados do cliente pelo nome)
+        // RegExp (expresão regular 'i' -> insentive (ignorar letra maiuscula ou minuscula))
+        const nota = await notaModel.find({
+            nota: new RegExp(notaCad, 'i')
+        })
+        // teste da busca do cliente pelo nome (Passo 3 e 4)
+        console.log(notaCad)
+        // Melhoria da experiencia do usuario (se não existir um cliente cadastrado enviar uma mensagem)
+        if (nota.length === 0) {
+            // Questionar o usuario.....
+            dialog.showMessageBox({
+                type: 'warning',
+                title: 'Aviso',
+                message: 'Nota não cadastrado. \nDeseja cadastrar este nota',
+                defaultId: 0,
+                buttons: ['Sim', 'Não']
+            }).then((result) => {
+                // se o botão sim for pressionado
+                if (result.response === 0) {
+                    // Enviar ao pedido para renderer um pedido para recortar e copiar o nome do cliente
+                    event.reply('set-nota')
+                } else {
+                    // Enviar ao renderer um pedido para limpar o campo
+                    event.reply('reset-form')
+                }
+            })
+
+        } else {
+            // Enviar ao renderizador (rendererCliente) os dados do cliente (Passo 5) OBS: converter para string
+            event.reply('render-nota', JSON.stringify(nota))
+        }
     } catch (error) {
         console.log(error)
     }
 })
-//==================================================================================
+//= FIM CRUD =======================================================================

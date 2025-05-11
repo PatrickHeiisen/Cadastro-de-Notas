@@ -17,32 +17,40 @@
             <!-- Seção: Dados da Nota Fiscal -->
             <div class="card-body">
                 <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Buscar Nota</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="buscarNota"
+                                placeholder="Digite o número da nota">
+                            <button type="button" class="btn btn-outline-primary" onclick="searchNota()">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
                     <div class="col-md-9">
                         <label class="form-label fw-bold">Número da Nota</label>
-                        <input type="text" class="form-control" id="inputNota" required>
-                    </div>
-                    <div class="col-md-3 d-flex align-items-end">
-                        <button type="button" class="btn btn-outline-primary w-100">Buscar Nota</button>
+                        <input type="text" class="form-control" id="inputNota">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Nome da Empresa</label>
-                        <input type="text" class="form-control" id="inputEmpresa" required>
+                        <input type="text" class="form-control" id="inputEmpresa">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">CNPJ</label>
-                        <input type="text" id="inputCnpj" class="form-control" onblur="validarCNPJ()" required>
+                        <input type="text" id="inputCnpj" class="form-control" onblur="validarCNPJ()">
+                        <div id="cnpjErro" class="text-danger mt-1" style="display: none;">CNPJ Inavlido</div>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Data de Emissão</label>
-                        <input type="date" class="form-control" id="inputData" required>
+                        <input type="date" class="form-control" id="inputData">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Valor Total (R$)</label>
-                        <input type="number" step="0.01" class="form-control" id="inputTotal" required>
+                        <input type="number" step="0.01" class="form-control" id="inputTotal">
                     </div>
                 </div>
             </div>
@@ -56,15 +64,15 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Nome do Item</label>
-                            <input type="text" class="form-control" id="inputItem" required>
+                            <input type="text" class="form-control" id="inputItem">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label fw-bold">Quantidade</label>
-                            <input type="number" class="form-control" id="inputQtd" required>
+                            <input type="number" class="form-control" id="inputQtd">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label fw-bold">Valor Unitário (R$)</label>
-                            <input type="number" step="0.01" class="form-control" id="inputUnitario" required>
+                            <input type="number" step="0.01" class="form-control" id="inputUnitario">
                         </div>
                     </div>
                     <!-- Item 2 
