@@ -22,7 +22,7 @@ const createWindow = () => {
     nativeTheme.themeSource = 'light'
     win = new BrowserWindow({
         width: 1000,
-        height: 900,
+        height: 800,
 
         webPreferences: {
             preload: path.join(__dirname, './preload.js')
@@ -34,6 +34,7 @@ const createWindow = () => {
     win.loadFile('./src/views/index.html')
 }
 
+// Janela Sobre
 let about
 function aboutWindow() {
     nativeTheme.themeSource = 'light'
@@ -63,6 +64,29 @@ function aboutWindow() {
         }
 
     })
+}
+
+// Janela Nota
+let nota
+function createPrin() {
+    nativeTheme.themeSource = 'light'
+    const main = BrowserWindow.getFocusedWindow()
+    if (main) {
+        nota = new BrowserWindow({
+            width: 1080,
+            height: 900,
+            //autoHideMenuBar: true,
+            //resizable: false,
+            parent: main,
+            modal: true,
+            //ativação do preload.js
+            webPreferences: {
+                preload: path.join(__dirname, 'preload.js')
+            }
+        })
+    }
+    nota.loadFile('./src/views/nota.html')
+    nota.center() //iniciar no centro da tela   
 }
 
 app.whenReady().then(() => {
@@ -161,6 +185,11 @@ const templete = [
         ]
     }
 ]
+
+// recebimento dos pedidos do renderizador para abertura de janelas (botões) autorizado no preload.js
+ipcMain.on('create-prin', () => {
+    createPrin()
+})
 
 //= CRUD CREATE - CADASTRAR NOTA ==================================================
 ipcMain.on('create-nota', async (event, newNota) => {

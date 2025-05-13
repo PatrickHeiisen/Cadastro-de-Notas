@@ -1,3 +1,21 @@
+// Tela Principal =====================================================================================
+// Envio de uma mensagem para o main abrir a janela clinte
+function Nota() {
+    //console.log("teste do botão cliente")
+    //uso da api(autorizada no preload.js)
+    api.createPrin()
+}
+// Troca do ícone do banco de dados (usando a api do preload.js)
+api.dbStatus((event, message) => {
+    //teste do recebimento da mensagem do main
+    console.log(message)
+    if (message === "conectado") {
+        document.getElementById('statusdb').src = "../public/img/dbon.png"
+    } else {
+        document.getElementById('statusdb').src = "../public/img/dboff.png"
+    }
+})
+
 // Validação Cnpj =============================================================
 function validarCNPJ() {
     let cnpjInput = document.getElementById('inputCnpj')
@@ -63,27 +81,7 @@ api.resetForm((args) => {
 //=============================================================================
 
 // Data =======================================================================
-function obterData() {
-    const data = new Date()
-    const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    }
-    return data.toLocaleDateString('pt-BR', options)
-}
 
-document.getElementById('dataAtual').innerHTML = obterData()
-
-api.dbStatus((event, message) => {
-    console.log(message)
-    if (message === "conectado") {
-        document.getElementById('iconeDB').src = "../public/img/dbon.png"
-    } else {
-        document.getElementById('iconeDB').src = "../public/img/dboff.png"
-    }
-})
 //=============================================================================
 
 // Processo de cadastro do cliente ============================================

@@ -1,122 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <title>Cadastro de Nota Fiscal</title>
+    <!-- Título que será exibido na janela -->
+    <title>Cadastro de Notas</title>
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <!-- CSS personalizado -->
     <link rel="stylesheet" href="../public/css/style.css">
+    <!-- impedir a execução de scripts externos ou não autorizados -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
 </head>
 
-<body class="bg-light">
-    <div class="container py-5">
-        <h2 class="mb-4 text-center fw-bold">Cadastro de Nota Fiscal</h2>
-        <form id="formNota">
-            <!-- Seção: Dados da Nota Fiscal -->
-            <div class="card-body">
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Buscar Nota</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="buscarNota"
-                                placeholder="Digite o número da nota">
-                            <button type="button" class="btn btn-outline-primary" onclick="searchNota()">Buscar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-9">
-                        <label class="form-label fw-bold">Número da Nota</label>
-                        <input type="text" class="form-control" id="inputNota">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Nome da Empresa</label>
-                        <input type="text" class="form-control" id="inputEmpresa">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">CNPJ</label>
-                        <input type="text" id="inputCnpj" class="form-control" onblur="validarCNPJ()">
-                        <div id="cnpjErro" class="text-danger mt-1" style="display: none;">CNPJ Inavlido</div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Data de Emissão</label>
-                        <input type="date" class="form-control" id="inputData">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Valor Total (R$)</label>
-                        <input type="number" step="0.01" class="form-control" id="inputTotal">
-                    </div>
-                </div>
-            </div>
-            <!-- Seção: Itens da Nota -->
-            <div class="card mb-4">
-                <div class="card-header bg-secondary text-white fw-bold">
-                    Itens da Nota
-                </div>
-                <div class="card-body" style="max-height: 300px; overflow-y: auto;">
-                    <!-- Item 1 -->
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Nome do Item</label>
-                            <input type="text" class="form-control" id="inputItem">
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label fw-bold">Quantidade</label>
-                            <input type="number" class="form-control" id="inputQtd">
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label fw-bold">Valor Unitário (R$)</label>
-                            <input type="number" step="0.01" class="form-control" id="inputUnitario">
-                        </div>
-                    </div>
-                    <!-- Item 2 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="nomeItem2" placeholder="Nome do Item">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="number" class="form-control" id="qtd2" placeholder="Quantidade">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="number" step="0.01" class="form-control" id="unitario2" placeholder="Valor Unitário">
-                        </div>
-                    </div>
-                     Item 3
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="nomeItem3" placeholder="Nome do Item">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="number" class="form-control" id="qtd3" placeholder="Quantidade">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="number" step="0.01" class="form-control" id="unitario3" placeholder="Valor Unitário">
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-            <!-- Botões de ação -->
-            <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-success" id="btnCreate">ADICIONAR</button>
-                <button type="reset" class="btn btn-warning text-black">LIMPAR</button>
-                <button type="button" class="btn btn-primary text-black" id="btnUpdate">EDITAR</button>
-                <button type="button" class="btn btn-danger text-black" id="btnDelete">EXCLUIR</button>
-            </div>
-        </form>
+<body>
+    <div class="container button">
+        <img src="../public/img/clientes.png" alt="" title="Cadastro de Notas" onclick="Nota()">
     </div>
-
     <footer>
         <p id="dataAtual"></p>
-        <img src="../public/img/dboff.png" alt="ícone banco de dados" id="iconeDB">
+        <img src="../public/img/dboff.png" alt="dbicon" id="statusdb">
     </footer>
 
+    <!-- Bootstrap -->
     <script src="../public/js/bootstrap.min.js"></script>
+    <!-- Scripts -->
+    <script src="../public/js/script.js"></script>
+    <!-- Renderizador -->
     <script src="renderer.js"></script>
 </body>
 
